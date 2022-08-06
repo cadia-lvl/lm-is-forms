@@ -41,6 +41,9 @@ def print_help():
 
 if __name__ == "__main__":
     try:
+        if len(sys.argv) != 3:
+            print_help()
+            exit()
         entity = sys.argv[1]
         n = int(sys.argv[2])
     except Exception:

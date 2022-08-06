@@ -2,7 +2,7 @@ import csv
 import sys
 
 fname = sys.argv[1]
-with open(fname, "r") as f:
+with open(fname, "r", newline="") as f:
     reader = csv.reader(f)
 
     writer = csv.writer(sys.stdout, delimiter="\t")
