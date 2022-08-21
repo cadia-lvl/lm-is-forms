@@ -3,9 +3,12 @@ import sys
 
 
 def read_file(fname):
-    with open(fname) as f:
-        for l in f:
-            yield l
+    if fname == "-":
+        f = sys.stdin
+    else:
+        f = open(fname)
+    for l in f:
+        yield l
 
 
 def split_phone_number(n):

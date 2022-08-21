@@ -33,7 +33,7 @@ def generate_kennitala(n):
 def print_help():
     print("""
         Usage: python generate_data.py <entity:str> <amount:int>
-        E.g.: python generate_data.py phone_number phone_numbes.txt
+        E.g.: python generate_data.py phone_number 1000
         Generate data from rules. Supported entities: [name, kennitala, phone_number]
         """)
 
