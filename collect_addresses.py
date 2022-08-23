@@ -22,11 +22,8 @@ ABBR = {
     "mhl.": "mhl",
     "hreðavatnsl.": "hreðavatnsl",
     "bakki.": "bakki",
-    "tjarnarl.": "",
-    "hreðavatnsl.": "",
-    "hreðavatnsl.": "",
-    "v.hl.": "",
-    "kollf.": "",
+    "v.hl.": "við hlið",
+    "aðk.": "aðkoma",
 }
 
 IGNORE = [t.lower() for t in [
@@ -199,6 +196,7 @@ if __name__ == "__main__":
         a = a.replace("-", " - ")
         a = normalize_address(a)
         if validate(a):
-            print(a, file=ofile)
+            if a:
+                print(a, file=ofile)
         else:
             print("Unknown character in address: {} ({})".format(oa, a), file=sys.stderr)

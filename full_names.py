@@ -14,7 +14,7 @@ SENTENCES = {
     "middle_name_kk": [
         "{name_kk}",
         "{name_kk} {name_kk}",
-    ]
+    ],
     "middle_name_kvk": [
         "{name_kvk}",
         "{name_kvk} {name_kvk}",
