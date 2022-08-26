@@ -5,7 +5,9 @@ import re
 from spell_number import get_is_number
 
 
-ALLOWED_CHARACTERS = string.ascii_lowercase + "áéíúýóðþæö"
+SPECIAL_CHARS = "áéíúýóðþæö"
+SPECIAL_CHARS_UPPER = SPECIAL_CHARS.upper()
+ALLOWED_CHARACTERS = string.ascii_uppercase + string.ascii_lowercase + SPECIAL_CHARS + SPECIAL_CHARS_UPPER
 ABBR = {
     "v.": "við",
     "nr.": "númer",
@@ -20,7 +22,7 @@ ABBR = {
     "útiv.sv.": "útivistarsvæði",
     "íb.lóð": "íbúðarlóð",
     "mhl.": "mhl",
-    "hreðavatnsl.": "hreðavatnsl",
+    "hreðavatnsl.": "Hreðavatnsl",
     "bakki.": "bakki",
     "v.hl.": "við hlið",
     "aðk.": "aðkoma",
@@ -143,7 +145,7 @@ def normalize_address(address):
     address = address.replace("4.", "fjórða ")
     address = address.replace("5.", "fimmta ")
     address = address.replace("17.", "sautjánda ")
-    tokens = list(tokenize(address.lower()))
+    tokens = list(tokenize(address))
     new_tokens = []
     for i, token in enumerate(tokens):
         if is_int(token):
@@ -158,8 +160,8 @@ def normalize_address(address):
                 return ""
         elif token == "nr.":
             new_tokens.append("númer")
-        elif token in ABBR.keys():
-            new_tokens.append(ABBR[token])
+        elif token.lower() in ABBR.keys():
+            new_tokens.append(ABBR[token.lower()])
         elif token == ".":
             pass
         elif token.lower().strip() in IGNORE:
@@ -188,7 +190,12 @@ if __name__ == "__main__":
     except Exception:
         print_help()
         exit()
-    ofile = open(ofile, "w")
+    
+    if ofile == "-":
+        ofile = sys.stdout
+    else:
+        ofile = open(ofile, "w")
+    
     for address in read_registry(fname):
         a = address["VEF_BIRTING"]
         a = clean_address(a)
