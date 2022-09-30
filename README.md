@@ -5,7 +5,7 @@ This projects is designed to generate data to create language models for common 
 # Installation
 
 Software requirements
-* Python 3
+* Python 3.5, 3.6 or 3.7
 
 Run `python3 -m pip install -r requirements.txt` to install.
 
